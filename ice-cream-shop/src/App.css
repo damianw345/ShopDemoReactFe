@@ -28,3 +28,30 @@
   border-radius: 5px;
   margin-top: 20px;
 }
+
+#btn-dodaj-loda {
+  background-color: #63aebb;
+  text-align: center;
+  color: white;
+  margin-top: 20px;
+  line-height: 60px;
+  border-radius: 5px;
+}
+
+#btn-anuluj-zamowienie {
+  background-color: #AF4035;
+  text-align: center;
+  color: white;
+  margin-top: 20px;
+  line-height: 60px;
+  border-radius: 5px;
+}
+
+#btn-zloz-zamowienie {
+  background-color: #629632;
+  text-align: center;
+  color: white;
+  margin-top: 20px;
+  line-height: 60px;
+  border-radius: 5px;
+}

@@ -11,6 +11,7 @@ import {
 import './App.css';
 import './Panel';
 import Panel from './Panel';
+import LargeButton from './LargeButton'
 
 class App extends Component {
 
@@ -20,16 +21,29 @@ class App extends Component {
         <Row style={{ background: 'green' }}>
           <Col sm={{ size: 5, offset: 1 }} style={{ background: 'red' }}>
 
-          <Panel topText={'Dodaj skladniki'}></Panel>
+            <Panel topText={'Dodaj skladniki'}>
+
+              <LargeButton id={'noweZamowienieButton'} text={'Nowe zamówienie'} handleClick={this.newOrder}></LargeButton>
+
+              <LargeButton id={'dostepneSkladnikiButton'} text={'Dostepne skladniki'}></LargeButton>
+
+            </Panel>
 
           </Col>
           <Col sm={{ size: 5, offset: 1 }} style={{ background: 'blue' }}>
-            2
+            <Panel topText={'Podsumowanie'}>
+
+            </Panel>
           </Col>
         </Row>
       </Container>
     );
   }
+
+  newOrder() {
+    console.log('elo')
+  }
+
 }
 
 export default App;

@@ -8,19 +8,16 @@ class Panel extends Component {
         super(props)
         this.state = {
             topText: props.topText
-            // topText: 'default',
-            // buttons: []
         }
     }
 
-    render() {
+    render(props) {
         const topText = this.state.topText;
 
-        return(
+        return (
             <div className='panel'>
                 <p id={'container-p'}>{topText}</p>
-                <LargeButton id={'noweZamowienieButton'} text={'Nowe zamówienie'}></LargeButton>
-                <LargeButton id={'dostepneSkladnikiButton'} text={'Dostepne skladniki'}></LargeButton>
+                {this.props.children}
             </div>
         );
     }
