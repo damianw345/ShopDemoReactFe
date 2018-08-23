@@ -1,0 +1,30 @@
+.panel{
+	background-color: rgba(63,59,59,0.9);
+	height: 90vh;
+	border-radius: 20px;
+	margin-top: 5vh;
+}
+
+#container-p{
+	color: white;
+	font-size: 32px;
+	text-align: center;
+	border-bottom: 2px solid #facf5a;
+}
+
+#noweZamowienieButton {
+  background-color: #63aebb;
+  text-align: center;
+  color: white;
+  line-height: 60px;
+  border-radius: 5px;
+}
+
+#dostepneSkladnikiButton {
+  background-color: #8B7355;
+  text-align: center;
+  color: white;
+  line-height: 60px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
