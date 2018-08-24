@@ -12,21 +12,26 @@ import './App.css';
 import './Panel';
 import Panel from './Panel';
 import LargeButton from './LargeButton'
+import './Button.css'
+import SubPanel from './SubPanel'
 
 class App extends Component {
 
   render() {
     return (
-      <Container className='clazz'>
+      <Container>
         <Row style={{ background: 'green' }}>
           <Col sm={{ size: 5, offset: 1 }} style={{ background: 'red' }}>
 
             <Panel topText={'Dodaj skladniki'}>
 
-              <LargeButton id={'noweZamowienieButton'} text={'Nowe zamówienie'} handleClick={this.newOrder}></LargeButton>
+              {/* <LargeButton id={'noweZamowienieButton'} text={'Nowe zamówienie'} handleClick={this.newOrder}></LargeButton>
 
-              <LargeButton id={'dostepneSkladnikiButton'} text={'Dostepne skladniki'}></LargeButton>
+              <LargeButton id={'dostepneSkladnikiButton'} text={'Dostepne skladniki'}></LargeButton> */}
 
+                <SubPanel>
+
+                </SubPanel>
             </Panel>
 
           </Col>
