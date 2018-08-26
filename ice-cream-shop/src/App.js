@@ -11,10 +11,10 @@ import {
 import './App.css';
 // import './Panel';
 import Panel from './Panel';
-import LargeButton from './LargeButton'
 import './Button.css'
-import SubPanel from './SubPanel'
-import './SubPanel.css'
+import EntryPanel from './EntryPanel'
+import ManageOrderPanel from './ManageOrderPanel';
+import ChooseIngredientPanel from './ChooseIngredientPanel';
 
 class App extends Component {
 
@@ -34,28 +34,13 @@ class App extends Component {
     let elementToRender;
 
     if (this.state.currentState === 'entryState') {
-      elementToRender =
-        <div>
-          <LargeButton id={'noweZamowienieButton'} text={'Nowe zamówienie'} handleClick={this.onNewOrder}></LargeButton>
-          <LargeButton id={'dostepneSkladnikiButton'} text={'Dostepne skladniki'}></LargeButton>
-        </div>;
-    } if (this.state.currentState === 'chooseIngredientsState') {
-      elementToRender =
-        <div>
-          <SubPanel topText={'Smaki'} buttonLabels={this.state.flavours} />
-
-          <SubPanel topText={'Dodatki'} buttonLabels={this.state.dressings} />
-
-          <SubPanel topText={'Polewy'} buttonLabels={this.state.sauces} />
-        </div>
-
-    } if (this.state.currentState === 'manageOrderState') {
-      elementToRender =
-      <div>
-        <LargeButton id={'dodajLodaButton'} text={'Dostepne skladniki'}></LargeButton>
-        <LargeButton id={'anulujZamowienieButton'} text={'Anuluj zamówienie'}></LargeButton>
-        <LargeButton id={'zlozZamowienieButton'} text={'Złóż zamówienie'}></LargeButton>
-      </div>
+      elementToRender = <EntryPanel app = {this}/>
+    } 
+    if (this.state.currentState === 'manageOrderState') {
+      elementToRender = <ManageOrderPanel app = {this}/>
+    } 
+    if (this.state.currentState === 'chooseIngredientsState') {
+      elementToRender = <ChooseIngredientPanel app = {this}/>
     }
 
     return (

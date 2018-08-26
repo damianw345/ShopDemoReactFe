@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import LargeButton from './LargeButton';
-
 
 class Panel extends Component {
     constructor(props) {
