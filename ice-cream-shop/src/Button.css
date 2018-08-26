@@ -1,6 +1,7 @@
 #noweZamowienieButton {
     background-color: #63aebb;
     text-align: center;
+    margin-top: 20px;
     color: white;
     line-height: 60px;
     border-radius: 5px;
@@ -10,12 +11,13 @@
     background-color: #8B7355;
     text-align: center;
     color: white;
+    margin-top: 20px;
     line-height: 60px;
     border-radius: 5px;
     margin-top: 20px;
   }
   
-  #btn-dodaj-loda {
+  #dodajLodaButton {
     background-color: #63aebb;
     text-align: center;
     color: white;
@@ -24,7 +26,7 @@
     border-radius: 5px;
   }
   
-  #btn-anuluj-zamowienie {
+  #anulujZamowienieButton {
     background-color: #AF4035;
     text-align: center;
     color: white;
@@ -33,7 +35,7 @@
     border-radius: 5px;
   }
   
-  #btn-zloz-zamowienie {
+  #zlozZamowienieButton {
     background-color: #629632;
     text-align: center;
     color: white;

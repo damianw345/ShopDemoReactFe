@@ -21,13 +21,43 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      flavours: ['smak1', 'smak2','smak3'],
+      flavours: ['smak1', 'smak2', 'smak3'],
       dressings: ['dodatek1', 'dodatek2', 'dodatek3'],
-      sauces: ['polewa1', 'polewa2', 'polewa3']
+      sauces: ['polewa1', 'polewa2', 'polewa3'],
+      currentState: 'entryState'
+      // currentState: 'manageOrderState'
     }
   }
 
   render() {
+
+    let elementToRender;
+
+    if (this.state.currentState === 'entryState') {
+      elementToRender =
+        <div>
+          <LargeButton id={'noweZamowienieButton'} text={'Nowe zamówienie'} handleClick={this.onNewOrder}></LargeButton>
+          <LargeButton id={'dostepneSkladnikiButton'} text={'Dostepne skladniki'}></LargeButton>
+        </div>;
+    } if (this.state.currentState === 'chooseIngredientsState') {
+      elementToRender =
+        <div>
+          <SubPanel topText={'Smaki'} buttonLabels={this.state.flavours} />
+
+          <SubPanel topText={'Dodatki'} buttonLabels={this.state.dressings} />
+
+          <SubPanel topText={'Polewy'} buttonLabels={this.state.sauces} />
+        </div>
+
+    } if (this.state.currentState === 'manageOrderState') {
+      elementToRender =
+      <div>
+        <LargeButton id={'dodajLodaButton'} text={'Dostepne skladniki'}></LargeButton>
+        <LargeButton id={'anulujZamowienieButton'} text={'Anuluj zamówienie'}></LargeButton>
+        <LargeButton id={'zlozZamowienieButton'} text={'Złóż zamówienie'}></LargeButton>
+      </div>
+    }
+
     return (
       <Container>
         <Row style={{ background: 'green' }}>
@@ -35,23 +65,7 @@ class App extends Component {
 
             <Panel topText={'Dodaj skladniki'}>
 
-              {/* <LargeButton id={'noweZamowienieButton'} text={'Nowe zamówienie'} handleClick={this.newOrder}></LargeButton>
-
-              <LargeButton id={'dostepneSkladnikiButton'} text={'Dostepne skladniki'}></LargeButton> */}
-
-              {console.log(this.state.flavours)}
-
-              <SubPanel topText={'Smaki'} buttonLabels = {this.state.flavours}>
-
-              </SubPanel>
-
-              <SubPanel topText={'Dodatki'} buttonLabels = {this.state.dressings}>
-
-              </SubPanel>
-
-              <SubPanel topText={'Polewy'} buttonLabels = {this.state.sauces}>
-
-              </SubPanel>
+              {elementToRender}
             </Panel>
 
           </Col>
@@ -65,8 +79,8 @@ class App extends Component {
     );
   }
 
-  newOrder() {
-    console.log('elo')
+  onNewOrder = () => {
+    this.setState({currentState: 'manageOrderState'});
   }
 
 }
