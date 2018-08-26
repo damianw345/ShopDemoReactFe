@@ -9,11 +9,12 @@ import {
 } from 'reactstrap';
 
 import './App.css';
-import './Panel';
+// import './Panel';
 import Panel from './Panel';
 import LargeButton from './LargeButton'
 import './Button.css'
 import SubPanel from './SubPanel'
+import './SubPanel.css'
 
 class App extends Component {
 
@@ -29,9 +30,17 @@ class App extends Component {
 
               <LargeButton id={'dostepneSkladnikiButton'} text={'Dostepne skladniki'}></LargeButton> */}
 
-                <SubPanel>
+              <SubPanel topText={'a'}>
 
-                </SubPanel>
+              </SubPanel>
+
+              <SubPanel topText={'b'}>
+
+              </SubPanel>
+
+              <SubPanel topText={'c'}>
+
+              </SubPanel>
             </Panel>
 
           </Col>

@@ -3,6 +3,7 @@
 	height: 90vh;
 	border-radius: 20px;
 	margin-top: 5vh;
+	overflow: auto;
 }
 
 #container-p{

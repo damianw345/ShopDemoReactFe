@@ -1,0 +1,38 @@
+/* .choose-window{ */
+	/* nieuzywane na razie */
+.typ{
+	/* height: 75vh; */
+	overflow: auto;
+	/* display: none; */
+	/* display: table-cell; */
+	background-color: #facf5a;
+	border-radius: 10px;
+	margin: 5vh;
+}
+
+.subpanel{
+	/* margin-left: auto; */
+	/* margin-right: auto; */
+	margin: 5vh;
+	background-color: #2e282a;
+	border-radius: 10px;
+	border: 1px solid #facf5a;
+}
+
+p {
+    color: white;
+    margin-top: 10px;
+}
+
+.subpanel-row{
+    margin-top: 15px;
+	margin-bottom: 15px;
+	/* margin: 5vh; */
+	
+}
+
+#sub-panel-title {
+	color:white;
+	text-align: center;	
+	margin-top: 5px;
+}

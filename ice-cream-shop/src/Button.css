@@ -1,0 +1,70 @@
+#noweZamowienieButton {
+    background-color: #63aebb;
+    text-align: center;
+    color: white;
+    line-height: 60px;
+    border-radius: 5px;
+  }
+  
+  #dostepneSkladnikiButton {
+    background-color: #8B7355;
+    text-align: center;
+    color: white;
+    line-height: 60px;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+  #btn-dodaj-loda {
+    background-color: #63aebb;
+    text-align: center;
+    color: white;
+    margin-top: 20px;
+    line-height: 60px;
+    border-radius: 5px;
+  }
+  
+  #btn-anuluj-zamowienie {
+    background-color: #AF4035;
+    text-align: center;
+    color: white;
+    margin-top: 20px;
+    line-height: 60px;
+    border-radius: 5px;
+  }
+  
+  #btn-zloz-zamowienie {
+    background-color: #629632;
+    text-align: center;
+    color: white;
+    margin-top: 20px;
+    line-height: 60px;
+    border-radius: 5px;
+  }
+
+  .btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.dodaj-button {
+    float: right;
+    background-color: #f95959 !important;
+}
