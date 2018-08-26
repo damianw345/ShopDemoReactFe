@@ -18,6 +18,15 @@ import './SubPanel.css'
 
 class App extends Component {
 
+  constructor() {
+    super()
+    this.state = {
+      flavours: ['smak1', 'smak2','smak3'],
+      dressings: ['dodatek1', 'dodatek2', 'dodatek3'],
+      sauces: ['polewa1', 'polewa2', 'polewa3']
+    }
+  }
+
   render() {
     return (
       <Container>
@@ -30,15 +39,17 @@ class App extends Component {
 
               <LargeButton id={'dostepneSkladnikiButton'} text={'Dostepne skladniki'}></LargeButton> */}
 
-              <SubPanel topText={'a'}>
+              {console.log(this.state.flavours)}
+
+              <SubPanel topText={'Smaki'} buttonLabels = {this.state.flavours}>
 
               </SubPanel>
 
-              <SubPanel topText={'b'}>
+              <SubPanel topText={'Dodatki'} buttonLabels = {this.state.dressings}>
 
               </SubPanel>
 
-              <SubPanel topText={'c'}>
+              <SubPanel topText={'Polewy'} buttonLabels = {this.state.sauces}>
 
               </SubPanel>
             </Panel>

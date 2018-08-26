@@ -8,15 +8,16 @@ import './Button.css';
 import SubPanelRow from './SubPanelRow'
 
 
-const SubPanel = ({ topText, buttonLabel }) => {
+const SubPanel = ({ topText, buttonLabels }) => {
 
     return (
         <div className='subpanel'>
             <h3 id='sub-panel-title'>{topText}</h3>
-            <SubPanelRow labelText='a' />
-            <SubPanelRow labelText='a' />
-            <SubPanelRow labelText='a' />
-            <SubPanelRow labelText='a' />
+            {
+                buttonLabels.map((buttonLabel) => {
+                   return(<SubPanelRow labelText={buttonLabel} />); 
+                })
+            }
         </div>
     );
 }
