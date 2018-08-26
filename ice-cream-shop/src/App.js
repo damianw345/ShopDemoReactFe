@@ -41,9 +41,6 @@ class App extends Component {
       .then(response => response.json())
       .then(fetchedSauces => {this.setState({ sauces: fetchedSauces});}
     );
-
-
-    this.state.summarySubpanels.push(<SummarySubpanel/>, <SummarySubpanel/>);
   }
 
   render() {
@@ -87,6 +84,8 @@ class App extends Component {
 
   onNewOrder = () => {
     this.setState({currentState: 'manageOrderState'});
+    this.createSummarySubpanel();
+
   }
 
   onAvailableIngredients = () => {
@@ -94,6 +93,7 @@ class App extends Component {
   }
 
   createSummarySubpanel(){
+    this.state.summarySubpanels.push(<SummarySubpanel iceCreamId = {++this.state.iceCreamsInCurrentOrder} flavours = {['banan', 'jablko']}/>);
 
   }
 }
