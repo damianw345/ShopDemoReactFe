@@ -8,7 +8,7 @@ import './Button.css';
 import classNames from 'classnames/bind';
 
 
-const SubPanelRow = ({ labelText, handleClick }) => {
+const SubPanelRow = ({ labelText, buttonLabelText, handleClick }) => {
 
     let btnClass = classNames('btn', 'btn-primary', 'dodaj-button');
 
@@ -20,7 +20,7 @@ const SubPanelRow = ({ labelText, handleClick }) => {
                     <p>{labelText}</p>
                 </Col>
                 <Col size='6'>
-                    <button type="button" onclick={handleClick} className={btnClass}>Dodaj</button>
+                    <button type="button" onclick={handleClick} className={btnClass}>{buttonLabelText}</button>
                 </Col>
             </Row>
         </Col>

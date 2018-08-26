@@ -36,3 +36,13 @@ p {
 	text-align: center;	
 	margin-top: 5px;
 }
+
+.summarySubpanelIceCreamP{
+	color: rgb(250, 207, 90);
+	font-size: 26px;
+}
+
+.summarySubpanelIngredientP{
+	color: rgb(250, 207, 90);
+	border-bottom: 1px solid rgb(250, 207, 90);
+}

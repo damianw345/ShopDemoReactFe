@@ -15,5 +15,4 @@ const ChooseIngredientPanel = ({ app }) => {
     );
 }
 
-
 export default ChooseIngredientPanel;

@@ -15,7 +15,7 @@ const SubPanel = ({ topText, buttonLabels }) => {
             <h3 id='sub-panel-title'>{topText}</h3>
             {
                 buttonLabels.map((buttonLabel) => {
-                   return(<SubPanelRow labelText={buttonLabel} />); 
+                   return(<SubPanelRow labelText={buttonLabel.name} buttonLabelText={'Dodaj'} />); 
                 })
             }
         </div>

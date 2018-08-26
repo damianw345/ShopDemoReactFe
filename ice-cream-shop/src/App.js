@@ -2,31 +2,48 @@ import React, { Component } from 'react';
 import {
   Container,
   Row,
-  Col,
-  Button,
-  ListGroup,
-  ListGroupItem
+  Col
 } from 'reactstrap';
 
 import './App.css';
-// import './Panel';
 import Panel from './Panel';
-import './Button.css'
 import EntryPanel from './EntryPanel'
 import ManageOrderPanel from './ManageOrderPanel';
 import ChooseIngredientPanel from './ChooseIngredientPanel';
+import SummarySubpanel from './SummarySubpanel';
 
 class App extends Component {
 
   constructor() {
     super()
     this.state = {
-      flavours: ['smak1', 'smak2', 'smak3'],
-      dressings: ['dodatek1', 'dodatek2', 'dodatek3'],
-      sauces: ['polewa1', 'polewa2', 'polewa3'],
-      currentState: 'entryState'
-      // currentState: 'manageOrderState'
+      flavours: [],
+      dressings: [],
+      sauces: [],
+      currentState: 'entryState',
+      summarySubpanels: [],
+      iceCreamsInCurrentOrder: 0,
     }
+  }
+
+  componentDidMount() {
+
+    fetch('http://localhost:8080/flavours')
+    .then(response => response.json())
+    .then(fetchedFlavours => {this.setState({ flavours: fetchedFlavours})});
+
+
+    fetch('http://localhost:8080/dressings')
+      .then(response => response.json())
+      .then(fetchedDressings => {this.setState({ dressings: fetchedDressings})});
+
+      fetch('http://localhost:8080/sauces')
+      .then(response => response.json())
+      .then(fetchedSauces => {this.setState({ sauces: fetchedSauces});}
+    );
+
+
+    this.state.summarySubpanels.push(<SummarySubpanel/>, <SummarySubpanel/>);
   }
 
   render() {
@@ -40,7 +57,7 @@ class App extends Component {
       elementToRender = <ManageOrderPanel app = {this}/>
     } 
     if (this.state.currentState === 'chooseIngredientsState') {
-      elementToRender = <ChooseIngredientPanel app = {this}/>
+      elementToRender = <ChooseIngredientPanel app = {this} flavours = {this.flavours} dressings = {this.dressings} sauces = {this.sauces}/>
     }
 
     return (
@@ -48,7 +65,7 @@ class App extends Component {
         <Row style={{ background: 'green' }}>
           <Col sm={{ size: 5, offset: 1 }} style={{ background: 'red' }}>
 
-            <Panel topText={'Dodaj skladniki'}>
+            <Panel topText={'Dodaj składniki'}>
 
               {elementToRender}
             </Panel>
@@ -57,6 +74,10 @@ class App extends Component {
           <Col sm={{ size: 5, offset: 1 }} style={{ background: 'blue' }}>
             <Panel topText={'Podsumowanie'}>
 
+              {/* <SummarySubpanel/> */}
+
+              {this.state.summarySubpanels.map((subpanel) => subpanel)}
+                
             </Panel>
           </Col>
         </Row>
@@ -68,6 +89,13 @@ class App extends Component {
     this.setState({currentState: 'manageOrderState'});
   }
 
+  onAvailableIngredients = () => {
+    this.setState({currentState: 'chooseIngredientsState'});
+  }
+
+  createSummarySubpanel(){
+
+  }
 }
 
 export default App;

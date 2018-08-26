@@ -11,5 +11,4 @@ const EntryPanel = ({app}) => {
     );
 }
 
-
 export default EntryPanel;
