@@ -59,7 +59,7 @@ class App extends Component {
     //   isFinished: false,
     // }
 
-    console.log(this.order);
+    // console.log(this.order);
 
     let elementToRender;
 
@@ -110,11 +110,14 @@ class App extends Component {
 
   createSummarySubpanel(){
     // this.state.summarySubpanels.push(<SummarySubpanel iceCreamId = {++this.state.iceCreamsInCurrentOrder} flavours = {['banan', 'jablko']}/>);
+    // this.state.summarySubpanels.push(<SummarySubpanel key = {this.iceCreamsInCurrentOrder} iceCreamId = {++this.state.iceCreamsInCurrentOrder}/>);
     this.state.summarySubpanels.push(<SummarySubpanel iceCreamId = {++this.state.iceCreamsInCurrentOrder}/>);
   }
 
   onChooseIngredient(data){
-    console.log('wybralem skladnik ' + data);
+    console.log('wybralem skladnik ' + JSON.stringify(data));
+
+    
   }
 }
 

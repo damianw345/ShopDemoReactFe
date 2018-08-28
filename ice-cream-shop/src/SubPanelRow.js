@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './SubPanel.css';
 import {
     Row,
@@ -15,6 +15,7 @@ class SubPanelRow extends React.Component{
             labelText: props.labelText,
             buttonLabelText: props.buttonLabelText,
             handleClick: props.handleClick,
+            ingredientType: props.type
         }
     }
 
@@ -22,7 +23,6 @@ class SubPanelRow extends React.Component{
         let btnClass = classNames('btn', 'btn-primary', 'dodaj-button');
     
         return (
-            // <Col sm={{ size: 12 }} className='choose-window'>
             <Col sm={{ size: 12 }}>
                 <Row className='subpanel-row'>
                     <Col size='6'>
@@ -37,8 +37,12 @@ class SubPanelRow extends React.Component{
     }
 
     innerHandleClick = ( () => {
-        // console.log("haha");
-        this.state.handleClick(this.state.labelText);
+        console.log(this.state.ingredientType);
+        // this.state.handleClick(this.state.labelText);
+        this.state.handleClick({
+            ingredientName: this.state.labelText,
+            ingredientType: this.state.ingredientType
+        });
     })
 }
 
