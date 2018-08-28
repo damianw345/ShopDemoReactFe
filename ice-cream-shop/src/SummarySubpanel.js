@@ -14,15 +14,6 @@ class SummarySubpanel extends Component {
     }
 
     render() {
-
-        // let flavourRowsToRender;
-        // let dressingRowToRender;
-        // let sauceRowToRender;
-
-        // if(Array.isArray(this.flavours) && this.flavours.length){
-        //     // array exists and is not empty
-        // }
-
         return (
             <div>
                 <p className='summarySubpanelIceCreamP'>Lód numer {this.props.iceCreamId}:</p>

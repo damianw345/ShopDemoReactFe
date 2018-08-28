@@ -23,6 +23,7 @@ class App extends Component {
       currentState: 'entryState',
       summarySubpanels: [],
       iceCreamsInCurrentOrder: 0,
+      order: {}
     }
   }
 
@@ -45,6 +46,21 @@ class App extends Component {
 
   render() {
 
+    // this.order = {
+    //   iceCreams: [
+    //     {
+    //       dressing: "posypka",
+    //       flavours: [
+    //         "jablko"
+    //       ],
+    //       sauce: "monte"
+    //     }
+    //   ],
+    //   isFinished: false,
+    // }
+
+    console.log(this.order);
+
     let elementToRender;
 
     if (this.state.currentState === 'entryState') {
@@ -54,7 +70,7 @@ class App extends Component {
       elementToRender = <ManageOrderPanel app = {this}/>
     } 
     if (this.state.currentState === 'chooseIngredientsState') {
-      elementToRender = <ChooseIngredientPanel app = {this} flavours = {this.flavours} dressings = {this.dressings} sauces = {this.sauces}/>
+      elementToRender = <ChooseIngredientPanel app = {this} flavours = {this.flavours} dressings = {this.dressings} sauces = {this.sauces} ingredientChosenHandler = {this.onChooseIngredient}/>
     }
 
     return (
@@ -82,19 +98,23 @@ class App extends Component {
     );
   }
 
+  onAvailableIngredients = () => {
+    this.setState({currentState: 'chooseIngredientsState'});
+  }
+
   onNewOrder = () => {
     this.setState({currentState: 'manageOrderState'});
     this.createSummarySubpanel();
 
   }
 
-  onAvailableIngredients = () => {
-    this.setState({currentState: 'chooseIngredientsState'});
+  createSummarySubpanel(){
+    // this.state.summarySubpanels.push(<SummarySubpanel iceCreamId = {++this.state.iceCreamsInCurrentOrder} flavours = {['banan', 'jablko']}/>);
+    this.state.summarySubpanels.push(<SummarySubpanel iceCreamId = {++this.state.iceCreamsInCurrentOrder}/>);
   }
 
-  createSummarySubpanel(){
-    this.state.summarySubpanels.push(<SummarySubpanel iceCreamId = {++this.state.iceCreamsInCurrentOrder} flavours = {['banan', 'jablko']}/>);
-
+  onChooseIngredient(data){
+    console.log('wybralem skladnik ' + data);
   }
 }
 
