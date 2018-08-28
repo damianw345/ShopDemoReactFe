@@ -108,16 +108,22 @@ class App extends Component {
 
   }
 
-  createSummarySubpanel(){
+  createSummarySubpanel = () => {
     // this.state.summarySubpanels.push(<SummarySubpanel iceCreamId = {++this.state.iceCreamsInCurrentOrder} flavours = {['banan', 'jablko']}/>);
     // this.state.summarySubpanels.push(<SummarySubpanel key = {this.iceCreamsInCurrentOrder} iceCreamId = {++this.state.iceCreamsInCurrentOrder}/>);
-    this.state.summarySubpanels.push(<SummarySubpanel iceCreamId = {++this.state.iceCreamsInCurrentOrder}/>);
+    this.state.summarySubpanels.push(<SummarySubpanel ref={(child) => { this._child = child; }} key = {this.state.iceCreamsInCurrentOrder} iceCreamId = {++this.state.iceCreamsInCurrentOrder} flavours = {[]}/>);
   }
 
-  onChooseIngredient(data){
+  onChooseIngredient = (data) => {
     console.log('wybralem skladnik ' + JSON.stringify(data));
 
+
+    console.log(React.isValidElement(this.state.summarySubpanels[0]));
+    // this.state.summarySubpanels[0].handleIngredientAdd(data);
     
+    // console.log(this._child.handleIngredientAdd('')); // Prints 'bar'
+
+    this._child.handleIngredientAdd(data);
   }
 }
 

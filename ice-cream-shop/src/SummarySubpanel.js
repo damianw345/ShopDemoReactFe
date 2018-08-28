@@ -31,6 +31,31 @@ class SummarySubpanel extends Component {
             </div>
         );
     }
+
+    handleIngredientAdd = (data) => {
+
+        console.log('handleIngredientAdd ' + JSON.stringify(data));
+
+        let { ingredientName, ingredientType } = data;
+
+        switch (ingredientType) {
+            case 'Smaki':
+
+                this.setState(prevState => ({
+                    flavours: [...prevState.flavours, ingredientName]
+                }))
+                break;
+
+            case 'Dodatki':
+                this.setState({ dressings: [ingredientName] });
+
+                break;
+            case 'Polewy':
+                this.setState({ sauces: [ingredientName] });
+                break;
+        }
+
+    }
 }
 
 export default SummarySubpanel;
