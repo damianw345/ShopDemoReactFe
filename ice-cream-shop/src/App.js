@@ -156,6 +156,10 @@ class App extends Component {
 
 
   handleCancelOrder = () => {
+    this.clearOrder();
+  }
+
+  clearOrder = () => {
     this.setState({
       summarySubpanels: [],
       iceCreamsInOrder: [],
@@ -170,7 +174,7 @@ class App extends Component {
       isFinished: false,
     }
 
-    console.log(orderToSend);
+    // console.log(orderToSend);
 
     fetch('http://localhost:8080/orders', {
       method: 'post',
@@ -180,6 +184,7 @@ class App extends Component {
       },
       body: JSON.stringify(orderToSend)
     })
+    .then( () => this.clearOrder())
     // .then(res => res.json())
     // .then(res => console.log(res));
   }
