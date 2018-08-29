@@ -5,7 +5,7 @@ const EntryPanel = ({app}) => {
 
     return(
         <div>
-          <LargeButton id={'noweZamowienieButton'} text={'Nowe zamówienie'} handleClick={app.onNewOrder}></LargeButton>
+          <LargeButton id={'noweZamowienieButton'} text={'Nowe zamówienie'} onClick={app.handleNewOrder}></LargeButton>
           <LargeButton id={'dostepneSkladnikiButton'} text={'Dostepne skladniki'}></LargeButton>
         </div>
     );
