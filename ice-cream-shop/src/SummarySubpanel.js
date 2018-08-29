@@ -119,10 +119,17 @@ class SummarySubpanel extends Component {
 
     getOrderedIngredients = () => {
         return {
+            // if it will be needed change here dressings and sauces back to arrays
+            
+            // iceCreamId: this.state.iceCreamId,
+            // flavours: this.state.flavours,
+            // dressings: this.state.dressings,
+            // sauces: this.state.sauces
+
             iceCreamId: this.state.iceCreamId,
             flavours: this.state.flavours,
-            dressings: this.state.dressings,
-            sauces: this.state.sauces
+            dressing: this.state.dressings[0],
+            sauce: this.state.sauces[0]
         }
     }
 }

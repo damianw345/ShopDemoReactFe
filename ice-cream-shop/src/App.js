@@ -17,9 +17,9 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      flavours: [],
-      dressings: [],
-      sauces: [],
+      availableFlavours: [],
+      availableDressings: [],
+      availableSauces: [],
       currentState: 'entryState',
       summarySubpanels: [],
       numberOfIceCreamsInOrder: 0,
@@ -59,8 +59,6 @@ class App extends Component {
     //   ],
     //   isFinished: false,
     // }
-
-    // console.log(this.order);
 
     let elementToRender;
 
@@ -107,12 +105,12 @@ class App extends Component {
 
     this.setState(prevState => ({
       summarySubpanels: [...prevState.summarySubpanels,
-        <SummarySubpanel
-          ref={(child) => { this._child = child; }}
-          key={this.state.numberOfIceCreamsInOrder}
-          iceCreamId={this.state.iceCreamsInOrder.length + 1}
-          flavours={[]}
-        />],
+      <SummarySubpanel
+        ref={(child) => { this._child = child; }}
+        key={this.state.numberOfIceCreamsInOrder}
+        iceCreamId={this.state.iceCreamsInOrder.length + 1}
+        flavours={[]}
+      />],
       currentState: 'chooseIngredientsState'
     }));
   }
@@ -150,14 +148,31 @@ class App extends Component {
   }
 
   handleCancelIceCream = () => {
-      this.setState((prevState) => ({
-        currentState: 'manageOrderState',
-        summarySubpanels: [...prevState.summarySubpanels.slice(0, prevState.summarySubpanels.length - 1)]
-      }))
+    this.setState((prevState) => ({
+      currentState: 'manageOrderState',
+      summarySubpanels: [...prevState.summarySubpanels.slice(0, prevState.summarySubpanels.length - 1)]
+    }));
   }
 
   handleSubmitOrder = () => {
-    console.log(this.state.iceCreamsInOrder);
+
+    let orderToSend = {
+      iceCreams: this.state.iceCreamsInOrder,
+      isFinished: false,
+    }
+
+    console.log(orderToSend);
+
+    fetch('http://localhost:8080/orders', {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(orderToSend)
+    })
+    // .then(res => res.json())
+    // .then(res => console.log(res));
   }
 
 }
