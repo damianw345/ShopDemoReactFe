@@ -23,6 +23,7 @@ class SummarySubpanel extends Component {
                     buttonLabelText={'Usuń'}
                     handleClick={this.handleIngredientRemove}
                     type={'Smaki'}
+                    key={'Smaki ' + flavour}
                 />)
         }
 
@@ -34,6 +35,7 @@ class SummarySubpanel extends Component {
                     buttonLabelText={'Usuń'}
                     handleClick={this.handleIngredientRemove}
                     type={'Dodatki'}
+                    key={'Dodatki ' + dressing}
                 />)
         }
 
@@ -45,6 +47,7 @@ class SummarySubpanel extends Component {
                     buttonLabelText={'Usuń'}
                     handleClick={this.handleIngredientRemove}
                     type={'Polewy'}
+                    key={'Polewy ' + sauce}
                 />)
         }
 
@@ -92,10 +95,6 @@ class SummarySubpanel extends Component {
     handleIngredientRemove = (data) => {
 
         let { ingredientName, ingredientType } = data;
-
-        // console.log("Click received by parent");
-        // console.log('ingredientName ' + ingredientName);
-        // console.log('ingredientType ' + ingredientType);
 
         switch (ingredientType) {
             case 'Smaki':

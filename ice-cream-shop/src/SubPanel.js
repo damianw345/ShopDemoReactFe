@@ -1,9 +1,5 @@
 import React from 'react';
 import './SubPanel.css';
-import {
-    Row,
-    Col
-} from 'reactstrap';
 import './Button.css';
 import SubPanelRow from './SubPanelRow'
 

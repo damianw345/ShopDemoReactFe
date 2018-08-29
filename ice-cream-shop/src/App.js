@@ -143,7 +143,8 @@ class App extends Component {
 
     this.setState(prevState => ({
       iceCreamsInOrder: [...prevState.iceCreamsInOrder, iceCream],
-      currentState: 'manageOrderState'
+      currentState: 'manageOrderState',
+      numberOfIceCreamsInOrder: prevState.numberOfIceCreamsInOrder + 1
     }));
   }
 
