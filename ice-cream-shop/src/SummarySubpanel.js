@@ -116,6 +116,15 @@ class SummarySubpanel extends Component {
                 break;
         }
     }
+
+    getOrderedIngredients = () => {
+        return {
+            iceCreamId: this.state.iceCreamId,
+            flavours: this.state.flavours,
+            dressings: this.state.dressings,
+            sauces: this.state.sauces
+        }
+    }
 }
 
 export default SummarySubpanel;

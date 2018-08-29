@@ -23,25 +23,26 @@ class App extends Component {
       currentState: 'entryState',
       summarySubpanels: [],
       iceCreamsInCurrentOrder: 0,
-      order: {}
+      order: {},
+      iceCreamsInOrder: [],
     }
   }
 
   componentDidMount() {
 
     fetch('http://localhost:8080/flavours')
-    .then(response => response.json())
-    .then(fetchedFlavours => {this.setState({ flavours: fetchedFlavours})});
+      .then(response => response.json())
+      .then(fetchedFlavours => { this.setState({ flavours: fetchedFlavours }) });
 
 
     fetch('http://localhost:8080/dressings')
       .then(response => response.json())
-      .then(fetchedDressings => {this.setState({ dressings: fetchedDressings})});
+      .then(fetchedDressings => { this.setState({ dressings: fetchedDressings }) });
 
-      fetch('http://localhost:8080/sauces')
+    fetch('http://localhost:8080/sauces')
       .then(response => response.json())
-      .then(fetchedSauces => {this.setState({ sauces: fetchedSauces});}
-    );
+      .then(fetchedSauces => { this.setState({ sauces: fetchedSauces }); }
+      );
   }
 
   render() {
@@ -64,33 +65,39 @@ class App extends Component {
     let elementToRender;
 
     if (this.state.currentState === 'entryState') {
-      elementToRender = <EntryPanel app = {this}/>
-    } 
+      elementToRender = <EntryPanel app={this} />
+    }
     if (this.state.currentState === 'manageOrderState') {
-      elementToRender = <ManageOrderPanel app = {this}/>
-    } 
+      elementToRender = <ManageOrderPanel app={this} />
+    }
     if (this.state.currentState === 'chooseIngredientsState') {
-      elementToRender = <ChooseIngredientPanel app = {this} flavours = {this.flavours} dressings = {this.dressings} sauces = {this.sauces} ingredientChosenHandler = {this.onChooseIngredient}/>
+      elementToRender = <ChooseIngredientPanel
+        app={this}
+        flavours={this.flavours}
+        dressings={this.dressings}
+        sauces={this.sauces}
+        ingredientChosenHandler={this.onChooseIngredient}
+        iceCreamAcceptedHandler={this.onIceCreamAccepted}
+        goBackHandler={this.onIceCreamRejected}
+      />
     }
 
     return (
       <Container>
-        <Row style={{ background: 'green' }}>
-          <Col sm={{ size: 5, offset: 1 }} style={{ background: 'red' }}>
+        {/* <Row style={{ background: 'green' }}> */}
+        <Row>
+          {/* <Col sm={{ size: 5, offset: 1 }} style={{ background: 'red' }}> */}
+          <Col sm={{ size: 5, offset: 1 }}>
 
             <Panel topText={'Dodaj składniki'}>
-
               {elementToRender}
             </Panel>
 
           </Col>
-          <Col sm={{ size: 5, offset: 1 }} style={{ background: 'blue' }}>
+          {/* <Col sm={{ size: 5, offset: 1 }} style={{ background: 'blue' }}> */}
+          <Col sm={{ size: 5, offset: 1 }}>
             <Panel topText={'Podsumowanie'}>
-
-              {/* <SummarySubpanel/> */}
-
               {this.state.summarySubpanels.map((subpanel) => subpanel)}
-                
             </Panel>
           </Col>
         </Row>
@@ -99,30 +106,55 @@ class App extends Component {
   }
 
   onAvailableIngredients = () => {
-    this.setState({currentState: 'chooseIngredientsState'});
+    this.setState({ currentState: 'chooseIngredientsState' });
   }
 
   onNewOrder = () => {
-    this.setState({currentState: 'manageOrderState'});
+    this.setState({ currentState: 'manageOrderState' });
     this.createSummarySubpanel();
-
   }
 
   createSummarySubpanel = () => {
-    this.state.summarySubpanels.push(<SummarySubpanel ref={(child) => { this._child = child; }} key = {this.state.iceCreamsInCurrentOrder} iceCreamId = {++this.state.iceCreamsInCurrentOrder} flavours = {[]}/>);
+
+    this.setState(prevState => ({
+      summarySubpanels: [...prevState.summarySubpanels,
+      <SummarySubpanel
+        ref={(child) => { this._child = child; }}
+        key={this.state.iceCreamsInCurrentOrder}
+        // iceCreamId={++this.state.iceCreamsInCurrentOrder}
+        // iceCreamId={this.state.iceCreamsInOrder.length}
+        iceCreamId={this.state.iceCreamsInOrder.length}
+        flavours={[]}
+      />]
+    }))
+
   }
 
   onChooseIngredient = (data) => {
-
-    console.log('wybralem skladnik ' + JSON.stringify(data));
-
-    // console.log(React.isValidElement(this.state.summarySubpanels[0]));
-    // this.state.summarySubpanels[0].handleIngredientAdd(data);
-    
-    // console.log(this._child.handleIngredientAdd('')); // Prints 'bar'
-
     this._child.handleIngredientAdd(data);
   }
+
+  onIceCreamAccepted = () => {
+
+    let iceCream = this._child.getOrderedIngredients();
+
+    this.setState(prevState => ({
+      iceCreamsInOrder: [...prevState.iceCreamsInOrder, iceCream],
+      summarySubpanels: [...prevState.summarySubpanels,
+        <SummarySubpanel
+          ref={(child) => { this._child = child; }}
+          key={this.state.iceCreamsInCurrentOrder}
+          iceCreamId={this.state.iceCreamsInOrder.length + 1}
+          flavours={[]}
+        />]
+    }));
+  }
+
+  onIceCreamRejected = () => {
+    // if (this.state.currentState === 'manageOrderState') {
+      this.setState({currentState: 'manageOrderState'});
+  }
+
 }
 
 export default App;
