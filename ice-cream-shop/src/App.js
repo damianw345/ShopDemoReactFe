@@ -78,7 +78,7 @@ class App extends Component {
         sauces={this.sauces}
         ingredientChosenHandler={this.onChooseIngredient}
         iceCreamAcceptedHandler={this.onIceCreamAccepted}
-        goBackHandler={this.onIceCreamRejected}
+        goBackHandler={this.onGoBackButtonClicked}
       />
     }
 
@@ -88,11 +88,9 @@ class App extends Component {
         <Row>
           {/* <Col sm={{ size: 5, offset: 1 }} style={{ background: 'red' }}> */}
           <Col sm={{ size: 5, offset: 1 }}>
-
             <Panel topText={'Dodaj składniki'}>
               {elementToRender}
             </Panel>
-
           </Col>
           {/* <Col sm={{ size: 5, offset: 1 }} style={{ background: 'blue' }}> */}
           <Col sm={{ size: 5, offset: 1 }}>
@@ -106,12 +104,24 @@ class App extends Component {
   }
 
   onAvailableIngredients = () => {
-    this.setState({ currentState: 'chooseIngredientsState' });
+    // this.setState({ currentState: 'chooseIngredientsState' });
+    //////////////
+
+    this.setState(prevState => ({
+      summarySubpanels: [...prevState.summarySubpanels,
+        <SummarySubpanel
+          ref={(child) => { this._child = child; }}
+          key={this.state.iceCreamsInCurrentOrder}
+          iceCreamId={this.state.iceCreamsInOrder.length + 1}
+          flavours={[]}
+        />],
+      currentState: 'chooseIngredientsState'
+    }));
   }
 
   onNewOrder = () => {
     this.setState({ currentState: 'manageOrderState' });
-    this.createSummarySubpanel();
+    // this.createSummarySubpanel();
   }
 
   createSummarySubpanel = () => {
@@ -126,8 +136,7 @@ class App extends Component {
         iceCreamId={this.state.iceCreamsInOrder.length}
         flavours={[]}
       />]
-    }))
-
+    }));
   }
 
   onChooseIngredient = (data) => {
@@ -140,18 +149,18 @@ class App extends Component {
 
     this.setState(prevState => ({
       iceCreamsInOrder: [...prevState.iceCreamsInOrder, iceCream],
-      summarySubpanels: [...prevState.summarySubpanels,
-        <SummarySubpanel
-          ref={(child) => { this._child = child; }}
-          key={this.state.iceCreamsInCurrentOrder}
-          iceCreamId={this.state.iceCreamsInOrder.length + 1}
-          flavours={[]}
-        />]
+      // summarySubpanels: [...prevState.summarySubpanels,
+      //   <SummarySubpanel
+      //     ref={(child) => { this._child = child; }}
+      //     key={this.state.iceCreamsInCurrentOrder}
+      //     iceCreamId={this.state.iceCreamsInOrder.length + 1}
+      //     flavours={[]}
+      //   />],
+      currentState: 'manageOrderState'
     }));
   }
 
-  onIceCreamRejected = () => {
-    // if (this.state.currentState === 'manageOrderState') {
+  onGoBackButtonClicked = () => {
       this.setState({currentState: 'manageOrderState'});
   }
 
