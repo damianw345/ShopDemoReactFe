@@ -23,7 +23,6 @@ class App extends Component {
       currentState: 'entryState',
       summarySubpanels: [],
       numberOfIceCreamsInOrder: 0,
-      order: {},
       iceCreamsInOrder: [],
     }
   }
@@ -153,6 +152,15 @@ class App extends Component {
       currentState: 'manageOrderState',
       summarySubpanels: [...prevState.summarySubpanels.slice(0, prevState.summarySubpanels.length - 1)]
     }));
+  }
+
+
+  handleCancelOrder = () => {
+    this.setState({
+      summarySubpanels: [],
+      iceCreamsInOrder: [],
+      numberOfIceCreamsInOrder: 0
+    });
   }
 
   handleSubmitOrder = () => {
