@@ -22,27 +22,30 @@ class SummarySubpanel extends Component {
                     labelText={flavour}
                     buttonLabelText={'Usuń'}
                     handleClick={this.handleIngredientRemove}
+                    type={'Smaki'}
                 />)
         }
 
-        let dressingsToRender; 
-        if(typeof this.state.dressings !== 'undefined' && this.state.dressings.length > 0){
+        let dressingsToRender;
+        if (typeof this.state.dressings !== 'undefined' && this.state.dressings.length > 0) {
             dressingsToRender = this.state.dressings.map((dressing) =>
-            <SubPanelRow
-                labelText={dressing}
-                buttonLabelText={'Usuń'}
-                handleClick={this.handleIngredientRemove}
-            />)
+                <SubPanelRow
+                    labelText={dressing}
+                    buttonLabelText={'Usuń'}
+                    handleClick={this.handleIngredientRemove}
+                    type={'Dodatki'}
+                />)
         }
 
-        let saucesToRender; 
-        if(typeof this.state.sauces !== 'undefined' && this.state.sauces.length > 0){
+        let saucesToRender;
+        if (typeof this.state.sauces !== 'undefined' && this.state.sauces.length > 0) {
             saucesToRender = this.state.sauces.map((sauce) =>
-            <SubPanelRow
-                labelText={sauce}
-                buttonLabelText={'Usuń'}
-                handleClick={this.handleIngredientRemove}
-            />)
+                <SubPanelRow
+                    labelText={sauce}
+                    buttonLabelText={'Usuń'}
+                    handleClick={this.handleIngredientRemove}
+                    type={'Polewy'}
+                />)
         }
 
         return (
@@ -86,10 +89,32 @@ class SummarySubpanel extends Component {
         }
     }
 
-    handleIngredientRemove = () => {
+    handleIngredientRemove = (data) => {
 
-        console.log("Click received by parent");
-        this.setState({sauces: []});
+        let { ingredientName, ingredientType } = data;
+
+        // console.log("Click received by parent");
+        // console.log('ingredientName ' + ingredientName);
+        // console.log('ingredientType ' + ingredientType);
+
+        switch (ingredientType) {
+            case 'Smaki':
+                this.setState({
+                    flavours: this.state.flavours.filter((flavour) => flavour !== ingredientName)
+                })
+                break;
+
+            case 'Dodatki':
+                this.setState({
+                    dressings: this.state.dressings.filter((dressing) => dressing !== ingredientName)
+                });
+                break;
+            case 'Polewy':
+                this.setState({
+                    sauces: this.state.sauces.filter((sauce) => sauce !== ingredientName)
+                })
+                break;
+        }
     }
 }
 
