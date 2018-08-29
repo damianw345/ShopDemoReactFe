@@ -14,19 +14,49 @@ class SummarySubpanel extends Component {
     }
 
     render() {
+
+        let flavoursToRender;
+        if (typeof this.state.flavours !== 'undefined' && this.state.flavours.length > 0) {
+            flavoursToRender = this.state.flavours.map((flavour) =>
+                <SubPanelRow
+                    labelText={flavour}
+                    buttonLabelText={'Usuń'}
+                    handleClick={this.handleIngredientRemove}
+                />)
+        }
+
+        let dressingsToRender; 
+        if(typeof this.state.dressings !== 'undefined' && this.state.dressings.length > 0){
+            dressingsToRender = this.state.dressings.map((dressing) =>
+            <SubPanelRow
+                labelText={dressing}
+                buttonLabelText={'Usuń'}
+                handleClick={this.handleIngredientRemove}
+            />)
+        }
+
+        let saucesToRender; 
+        if(typeof this.state.sauces !== 'undefined' && this.state.sauces.length > 0){
+            saucesToRender = this.state.sauces.map((sauce) =>
+            <SubPanelRow
+                labelText={sauce}
+                buttonLabelText={'Usuń'}
+                handleClick={this.handleIngredientRemove}
+            />)
+        }
+
         return (
             <div>
                 <p className='summarySubpanelIceCreamP'>Lód numer {this.props.iceCreamId}:</p>
+
                 <p className='summarySubpanelIngredientP'>Smaki:</p>
+                {flavoursToRender}
 
-
-                {typeof this.state.flavours !== 'undefined' && this.state.flavours.map((flavour) => <SubPanelRow labelText={flavour} buttonLabelText={'Usuń'} />)}
-
-                <p className='summarySubpanelIngredientP'>Dekoracje:</p>
-                {typeof this.state.dressings !== 'undefined' && this.state.dressings.map((dressing) => <SubPanelRow labelText={dressing} buttonLabelText={'Usuń'} />)}
+                <p className='summarySubpanelIngredientP'>Dodatki:</p>
+                {dressingsToRender}
 
                 <p className='summarySubpanelIngredientP'>Polewy:</p>
-                {typeof this.state.sauces !== 'undefined' && this.state.sauces.map((sauce) => <SubPanelRow labelText={sauce} buttonLabelText={'Usuń'} />)}
+                {saucesToRender}
 
             </div>
         );
@@ -54,7 +84,12 @@ class SummarySubpanel extends Component {
                 this.setState({ sauces: [ingredientName] });
                 break;
         }
+    }
 
+    handleIngredientRemove = () => {
+
+        console.log("Click received by parent");
+        this.setState({sauces: []});
     }
 }
 
