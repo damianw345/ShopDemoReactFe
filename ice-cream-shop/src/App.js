@@ -78,7 +78,7 @@ class App extends Component {
         sauces={this.sauces}
         ingredientChosenHandler={this.onChooseIngredient}
         iceCreamAcceptedHandler={this.onIceCreamAccepted}
-        goBackHandler={this.onGoBackButtonClicked}
+        onCancelIceCream={this.handleOnCancelIceCream}
       />
     }
 
@@ -160,8 +160,11 @@ class App extends Component {
     }));
   }
 
-  onGoBackButtonClicked = () => {
-      this.setState({currentState: 'manageOrderState'});
+  handleOnCancelIceCream = () => {
+      this.setState((prevState) => ({
+        currentState: 'manageOrderState',
+        summarySubpanels: [...prevState.summarySubpanels.slice(0, prevState.summarySubpanels.length - 1)]
+      }))
   }
 
 }

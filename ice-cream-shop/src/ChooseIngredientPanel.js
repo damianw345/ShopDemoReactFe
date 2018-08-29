@@ -3,7 +3,7 @@ import SubPanel from './SubPanel'
 import './SubPanel.css'
 import {Button} from 'reactstrap';
 
-const ChooseIngredientPanel = ({app, ingredientChosenHandler, iceCreamAcceptedHandler, goBackHandler}) => {
+const ChooseIngredientPanel = ({app, ingredientChosenHandler, iceCreamAcceptedHandler, onCancelIceCream}) => {
 
     return (
         <div>
@@ -13,7 +13,7 @@ const ChooseIngredientPanel = ({app, ingredientChosenHandler, iceCreamAcceptedHa
 
           <SubPanel topText={'Polewy'} buttonLabels={app.state.sauces} ingredientChosenHandler={ingredientChosenHandler}/>
 
-          <Button onClick = {goBackHandler} color="danger" size="lg" block>Wstecz</Button>
+          <Button onClick = {onCancelIceCream} color="danger" size="lg" block>Anuluj</Button>
           <Button onClick = {iceCreamAcceptedHandler} color="success" size="lg" block>Zatwierdź</Button>
         </div>
     );
