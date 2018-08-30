@@ -127,8 +127,8 @@ class SummarySubpanel extends Component {
 
             iceCreamId: this.state.iceCreamId,
             flavours: this.state.flavours,
-            dressing: this.state.dressings[0],
-            sauce: this.state.sauces[0]
+            dressing: ( typeof this.state.dressings !== 'undefined') ? this.state.dressings[0] : '',
+            sauce: (typeof this.state.sauces !== 'undefined') ? this.state.sauces[0] : ''
         }
     }
 }
