@@ -88,10 +88,11 @@ class SummarySubpanel extends Component {
 
         switch (ingredientType) {
             case 'Smaki':
-
-                this.setState(prevState => ({
-                    flavours: [...prevState.flavours, ingredientName]
-                }))
+                if (this.state.flavours.length < 2) {
+                    this.setState(prevState => ({
+                        flavours: [...prevState.flavours, ingredientName]
+                    }))
+                }
                 break;
 
             case 'Dodatki':
