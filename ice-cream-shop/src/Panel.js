@@ -10,11 +10,24 @@ class Panel extends Component {
         }
     }
 
+    componentDidMount() {
+        this.scrollToBottom();
+      }
+    
+      componentDidUpdate() {
+        this.scrollToBottom();
+      }
+    
+      scrollToBottom() {
+        this.el.scrollIntoView({ behavior: 'smooth' });
+      }
+    
+
     render(props) {
         const topText = this.state.topText;
 
         return (
-            <div className='panel'>
+            <div className='panel' ref={el => { this.el = el; }} >
                 <p id={'container-p'}>{topText}</p>
                 {this.props.children}
             </div>

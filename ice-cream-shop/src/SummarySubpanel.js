@@ -52,7 +52,7 @@ class SummarySubpanel extends Component {
         }
 
         return (
-            <div>
+            <div ref={el => { this.el = el; }}>
                 <p className='summarySubpanelIceCreamP'>Lód numer {this.props.iceCreamId}:</p>
 
                 <p className='summarySubpanelIngredientP'>Smaki:</p>
@@ -66,6 +66,18 @@ class SummarySubpanel extends Component {
 
             </div>
         );
+    }
+
+    componentDidMount() {
+        this.scrollToBottom();
+    }
+
+    componentDidUpdate() {
+        this.scrollToBottom();
+    }
+
+    scrollToBottom() {
+        this.el.scrollIntoView({ behavior: 'smooth' });
     }
 
     handleIngredientAdd = (data) => {
@@ -119,7 +131,7 @@ class SummarySubpanel extends Component {
     getOrderedIngredients = () => {
         return {
             // if it will be needed change here dressings and sauces back to arrays
-            
+
             // iceCreamId: this.state.iceCreamId,
             // flavours: this.state.flavours,
             // dressings: this.state.dressings,
@@ -127,7 +139,7 @@ class SummarySubpanel extends Component {
 
             iceCreamId: this.state.iceCreamId,
             flavours: this.state.flavours,
-            dressing: ( typeof this.state.dressings !== 'undefined') ? this.state.dressings[0] : '',
+            dressing: (typeof this.state.dressings !== 'undefined') ? this.state.dressings[0] : '',
             sauce: (typeof this.state.sauces !== 'undefined') ? this.state.sauces[0] : ''
         }
     }
