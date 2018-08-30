@@ -154,9 +154,10 @@ class App extends Component {
     }));
   }
 
-
   handleCancelOrder = () => {
-    this.clearOrder();
+    if(window.confirm('Anulować zamówienie?')){
+      this.clearOrder();
+    }
   }
 
   clearOrder = () => {
