@@ -10,6 +10,7 @@ class SummarySubpanel extends Component {
             flavours: props.flavours,
             dressings: props.dressings,
             sauces: props.sauces,
+            removeButtons: props.removeButtons
         }
     }
 
@@ -24,6 +25,7 @@ class SummarySubpanel extends Component {
                     handleClick={this.handleIngredientRemove}
                     type={'Smaki'}
                     key={'Smaki ' + flavour}
+                    removeButtons = {this.state.removeButtons}
                 />)
         }
 
@@ -36,6 +38,7 @@ class SummarySubpanel extends Component {
                     handleClick={this.handleIngredientRemove}
                     type={'Dodatki'}
                     key={'Dodatki ' + dressing}
+                    removeButtons = {this.state.removeButtons}
                 />)
         }
 
@@ -48,6 +51,7 @@ class SummarySubpanel extends Component {
                     handleClick={this.handleIngredientRemove}
                     type={'Polewy'}
                     key={'Polewy ' + sauce}
+                    removeButtons = {this.state.removeButtons}
                 />)
         }
 

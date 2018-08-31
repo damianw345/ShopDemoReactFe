@@ -11,29 +11,43 @@ class SubPanelRow extends React.Component{
 
     constructor(props) {
         super(props);
-        this.state ={
+        this.state = {
             labelText: props.labelText,
             buttonLabelText: props.buttonLabelText,
             handleClick: props.handleClick,
-            ingredientType: props.type
+            ingredientType: props.type,
+            removeButtons: props.removeButtons,
         }
     }
 
     render(){
         let btnClass = classNames('btn', 'btn-primary', 'dodaj-button');
 
-        return (
-            <Col sm={{ size: 12 }}>
-                <Row className='subpanel-row'>
-                    <Col size='6'>
-                        <p>{this.state.labelText}</p>
-                    </Col>
-                    <Col size='6'>
-                        <button type="button" onClick={this.passRowDataOnClick} className={btnClass}>{this.state.buttonLabelText}</button>
-                    </Col>
-                </Row>
-            </Col>
-        );
+        if(this.state.removeButtons){
+            return (
+                <Col sm={{ size: 12 }}>
+                    <Row className='subpanel-row'>
+                        <Col size='12'>
+                            <p>{this.state.labelText}</p>
+                        </Col>
+                    </Row>
+                </Col>
+            );
+        } else{
+            return (
+                <Col sm={{ size: 12 }}>
+                    <Row className='subpanel-row'>
+                        <Col size='6'>
+                            <p>{this.state.labelText}</p>
+                        </Col>
+                        <Col size='6'>
+                            <button type="button" onClick={this.passRowDataOnClick} className={btnClass}>{this.state.buttonLabelText}</button>
+                        </Col>
+                    </Row>
+                </Col>
+            );
+        }
+
     }
 
     passRowDataOnClick = ( () => {

@@ -141,10 +141,27 @@ class App extends Component {
 
     let iceCream = this._child.getOrderedIngredients();
 
+    let subpanels = this.state.summarySubpanels;
+
+    let newSubpanels = []; 
+
+    // for(let i = 0; i < subpanels.length; i++) {
+      newSubpanels.push(<SummarySubpanel
+        ref={(child) => { this._child = child; }}
+        key={Math.random() * 10000}
+        iceCreamId={this.state.iceCreamsInOrder.length + 1}
+        flavours={iceCream.flavours}
+        dressings={[iceCream.dressing]}
+        sauces={[iceCream.sauce]}
+        removeButtons={true}
+      />);
+    // }
+
     this.setState(prevState => ({
       iceCreamsInOrder: [...prevState.iceCreamsInOrder, iceCream],
       currentState: 'manageOrderState',
-      numberOfIceCreamsInOrder: prevState.numberOfIceCreamsInOrder + 1
+      numberOfIceCreamsInOrder: prevState.numberOfIceCreamsInOrder + 1,
+      summarySubpanels: newSubpanels
     }));
   }
 
@@ -156,7 +173,7 @@ class App extends Component {
   }
 
   handleCancelOrder = () => {
-    if(window.confirm('Anulować zamówienie?')){
+    if (window.confirm('Anulować zamówienie?')) {
       this.clearOrder();
     }
   }
@@ -186,7 +203,7 @@ class App extends Component {
       },
       body: JSON.stringify(orderToSend)
     })
-    .then( () => this.clearOrder())
+      .then(() => this.clearOrder())
     // .then(res => res.json())
     // .then(res => console.log(res));
   }
