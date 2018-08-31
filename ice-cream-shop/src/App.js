@@ -31,17 +31,18 @@ class App extends Component {
 
     fetch('http://localhost:8080/flavours')
       .then(response => response.json())
-      .then(fetchedFlavours => { this.setState({ flavours: fetchedFlavours }) });
-
+      .then(fetchedFlavours => { this.setState({ flavours: fetchedFlavours }) })
+      .catch(() => this.setState({ flavours: [] }));
 
     fetch('http://localhost:8080/dressings')
       .then(response => response.json())
-      .then(fetchedDressings => { this.setState({ dressings: fetchedDressings }) });
+      .then(fetchedDressings => { this.setState({ dressings: fetchedDressings }) })
+      .catch(() => this.setState({ dressings: [] }));      
 
     fetch('http://localhost:8080/sauces')
       .then(response => response.json())
-      .then(fetchedSauces => { this.setState({ sauces: fetchedSauces }); }
-      );
+      .then(fetchedSauces => { this.setState({ sauces: fetchedSauces }); })
+      .catch(() => this.setState({ sauces: [] }));            
   }
 
   render() {
