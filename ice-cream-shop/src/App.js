@@ -13,6 +13,8 @@ import ChooseIngredientPanel from './ChooseIngredientPanel';
 import SummarySubpanel from './SummarySubpanel';
 import axios from 'axios';
 
+let baseUrl = 'http://18.185.138.85:8080/';
+
 class App extends Component {
 
   constructor() {
@@ -29,8 +31,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-
-      let baseUrl = 'http://18.185.138.85:8080/';
 
       axios.get(baseUrl + 'flavours')
       .then(fetchedFlavours => { this.setState({ flavours: fetchedFlavours.data }) })
@@ -178,7 +178,7 @@ class App extends Component {
       isFinished: false,
     }
 
-    axios.post(`http://18.185.138.85:8080/orders`, orderToSend)
+    axios.post(baseUrl + 'orders', orderToSend)
     .then(() => this.clearOrder());
   }
 
