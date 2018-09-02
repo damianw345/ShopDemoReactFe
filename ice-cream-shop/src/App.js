@@ -30,7 +30,7 @@ class App extends Component {
 
   componentDidMount() {
 
-      let baseUrl = 'http://localhost:8080/';
+      let baseUrl = 'http://18.185.138.85:8080/';
 
       axios.get(baseUrl + 'flavours')
       .then(fetchedFlavours => { this.setState({ flavours: fetchedFlavours.data }) })
@@ -178,7 +178,7 @@ class App extends Component {
       isFinished: false,
     }
 
-    axios.post(`http://localhost:8080/orders`, orderToSend)
+    axios.post(`http://18.185.138.85:8080/orders`, orderToSend)
     .then(() => this.clearOrder());
   }
 
