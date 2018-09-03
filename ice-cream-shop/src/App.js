@@ -13,7 +13,8 @@ import ChooseIngredientPanel from './ChooseIngredientPanel';
 import SummarySubpanel from './SummarySubpanel';
 import axios from 'axios';
 
-let baseUrl = 'http://18.185.138.85:8080/';
+// let baseUrl = 'http://18.185.138.85:8080/';
+let baseUrl = 'http://localhost:8080/';
 
 class App extends Component {
 
@@ -142,28 +143,25 @@ class App extends Component {
   handleIceCreamAccepted = () => {
 
     let iceCream = this._child.getOrderedIngredients();
-
     let subpanels = this.state.summarySubpanels;
 
-    let newSubpanels = []; 
-
-    // for(let i = 0; i < subpanels.length; i++) {
-      newSubpanels.push(<SummarySubpanel
-        ref={(child) => { this._child = child; }}
-        key={Math.random() * 10000}
-        iceCreamId={this.state.iceCreamsInOrder.length + 1}
-        flavours={iceCream.flavours}
-        dressings={[iceCream.dressing]}
-        sauces={[iceCream.sauce]}
-        removeButtons={true}
-      />);
-    // }
+    //remove delete buttons after accepting ice cream 
+    subpanels.pop();
+    subpanels.push(<SummarySubpanel
+      ref={(child) => { this._child = child; }}
+      key={Math.random() * 10000}
+      iceCreamId={this.state.iceCreamsInOrder.length + 1}
+      flavours={iceCream.flavours}
+      dressings={[iceCream.dressing]}
+      sauces={[iceCream.sauce]}
+      removeButtons={true}
+    />);
 
     this.setState(prevState => ({
       iceCreamsInOrder: [...prevState.iceCreamsInOrder, iceCream],
       currentState: 'manageOrderState',
       numberOfIceCreamsInOrder: prevState.numberOfIceCreamsInOrder + 1,
-      summarySubpanels: newSubpanels
+      summarySubpanels: subpanels
     }));
   }
 
