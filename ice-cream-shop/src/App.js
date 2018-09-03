@@ -11,6 +11,9 @@ import EntryPanel from './EntryPanel'
 import ManageOrderPanel from './ManageOrderPanel';
 import ChooseIngredientPanel from './ChooseIngredientPanel';
 import SummarySubpanel from './SummarySubpanel';
+import axios from 'axios';
+
+let baseUrl = 'http://18.185.138.85:8080/';
 
 class App extends Component {
 
@@ -29,20 +32,19 @@ class App extends Component {
 
   componentDidMount() {
 
-    fetch('http://localhost:8080/flavours')
-      .then(response => response.json())
-      .then(fetchedFlavours => { this.setState({ flavours: fetchedFlavours }) })
+      axios.get(baseUrl + 'flavours')
+      .then(fetchedFlavours => { this.setState({ flavours: fetchedFlavours.data }) })
       .catch(() => this.setState({ flavours: [] }));
 
-    fetch('http://localhost:8080/dressings')
-      .then(response => response.json())
-      .then(fetchedDressings => { this.setState({ dressings: fetchedDressings }) })
+      axios.get(baseUrl + 'dressings')
+      .then(fetchedDressings => { this.setState({ dressings: fetchedDressings.data }) })
       .catch(() => this.setState({ dressings: [] }));      
 
-    fetch('http://localhost:8080/sauces')
-      .then(response => response.json())
-      .then(fetchedSauces => { this.setState({ sauces: fetchedSauces }); })
-      .catch(() => this.setState({ sauces: [] }));            
+
+      axios.get(baseUrl + 'sauces')
+      .then(fetchedSauces => { this.setState({ sauces: fetchedSauces.data }); })
+      .catch(() => this.setState({ sauces: [] })); 
+
   }
 
   render() {
@@ -193,19 +195,8 @@ class App extends Component {
       isFinished: false,
     }
 
-    // console.log(orderToSend);
-
-    fetch('http://localhost:8080/orders', {
-      method: 'post',
-      headers: {
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(orderToSend)
-    })
-      .then(() => this.clearOrder())
-    // .then(res => res.json())
-    // .then(res => console.log(res));
+    axios.post(baseUrl + 'orders', orderToSend)
+    .then(() => this.clearOrder());
   }
 
 }
