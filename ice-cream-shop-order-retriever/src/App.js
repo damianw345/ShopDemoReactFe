@@ -1,19 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import {
+  Container,
+  Row,
+  Col,
+} from 'reactstrap';
 import './App.css';
+import Panel from './Panel';
+import SubPanel from './SubPanel';
+import SummarySubpanel from './SummarySubpanel';
+
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Container>
+        <Row className="text-center">
+          <Col >
+            <Panel topText={'W realizacji'}>
+              {/* {elementToRender} */}
+              <SubPanel topText={'Zamówienie 1'}>
+                {/* <div>
+
+                </div> */}
+
+              </SubPanel>
+
+              {/* <SummarySubpanel iceCreamId = {1} flavours={['smak1', 'smak2']} sauces = {['sos1']} dressings = {['dodatek1']}/> */}
+
+            </Panel>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

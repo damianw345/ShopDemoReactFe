@@ -13,8 +13,8 @@ import ChooseIngredientPanel from './ChooseIngredientPanel';
 import SummarySubpanel from './SummarySubpanel';
 import axios from 'axios';
 
-// let baseUrl = 'http://18.185.138.85:8080/';
-let baseUrl = 'http://localhost:8080/';
+let baseUrl = 'http://18.185.138.85:8080/';
+// let baseUrl = 'http://localhost:8080/';
 
 class App extends Component {
 
