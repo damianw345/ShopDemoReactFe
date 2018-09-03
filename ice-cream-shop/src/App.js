@@ -21,10 +21,11 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      availableFlavours: [],
-      availableDressings: [],
-      availableSauces: [],
-      currentState: 'entryState',
+      flavours: [],
+      dressings: [],
+      sauces: [],
+      // currentState: 'entryState', //TODO consider removing this state from the code since it's not used
+      currentState: 'manageOrderState',
       summarySubpanels: [],
       numberOfIceCreamsInOrder: 0,
       iceCreamsInOrder: [],
@@ -89,7 +90,7 @@ class App extends Component {
         <Row>
           {/* <Col sm={{ size: 5, offset: 1 }} style={{ background: 'red' }}> */}
           <Col sm={{ size: 5, offset: 1 }}>
-            <Panel topText={'Dodaj składniki'}>
+            <Panel topText={'Zarządzaj zamówieniem'}>
               {elementToRender}
             </Panel>
           </Col>
