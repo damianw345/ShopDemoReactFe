@@ -30,9 +30,11 @@ class App extends Component {
               {this.state.orders.map((order) => {
                 return (
                   <OrderPanel
-                    key= {order.orderId}
-                    topText='Zamówienie'
+                    key = {order.orderId}
+                    orderId = {order.orderId}
+                    topText = 'Zamówienie'
                     iceCreams = {order.iceCreams}
+                    baseUrl = {baseUrl}
                   />
                 );
               })}

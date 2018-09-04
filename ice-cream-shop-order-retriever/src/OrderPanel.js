@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import './OrderPanel.css';
 import IceCreamsPanel from './IceCreamsPanel';
+import {
+    Button
+} from 'reactstrap';
+import axios from 'axios';
 
-class OrderPanel extends React.Component {
+class OrderPanel extends Component {
     constructor(props) {
         super(props)
         this.state = {
             topText: props.topText,
-            iceCreams: props.iceCreams
+            orderId: props.orderId,
+            iceCreams: props.iceCreams,
+            baseUrl: props.baseUrl,
         }
     }
 
@@ -27,9 +33,18 @@ class OrderPanel extends React.Component {
                             />
                         );
                     })}
+                <Button onClick={this.orderDoneHandler} color="success" size="lg" block>Zakończ</Button>
                 </div>
             </div>
         );
+    }
+
+    orderDoneHandler = () => {
+
+        let config = { headers: {'Content-Type': 'application/json'} };
+        let content = {isFinished: true};
+        
+        axios.put(this.state.baseUrl + 'orders/' + this.state.orderId, content, config);
     }
 }
 

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import SubPanelRow from './SubPanelRow'
 import './OrderPanel.css'
-import {
-    Button
-} from 'reactstrap';
+
 class IceCreamsPanel extends Component {
     constructor(props) {
         super(props)
@@ -55,14 +53,8 @@ class IceCreamsPanel extends Component {
 
                 <p className='summarySubpanelIngredientP'>Polewy:</p>
                 {saucesToRender}
-
-                <Button onClick={this.orderDoneHandler} color="success" size="lg" block>Zakończ</Button>
             </div>
         );
-    }
-
-    orderDoneHandler = () => {
-        console.log('click!');
     }
 
     // componentDidMount() {
