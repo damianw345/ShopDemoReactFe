@@ -19,14 +19,9 @@ class App extends Component {
             <Panel topText={'W realizacji'}>
               {/* {elementToRender} */}
               <SubPanel topText={'Zamówienie 1'}>
-                {/* <div>
 
-                </div> */}
-
+                <SummarySubpanel iceCreamId={1} flavours={['smak1', 'smak2']} sauces={['sos1']} dressings={['dodatek1']} />
               </SubPanel>
-
-              {/* <SummarySubpanel iceCreamId = {1} flavours={['smak1', 'smak2']} sauces = {['sos1']} dressings = {['dodatek1']}/> */}
-
             </Panel>
           </Col>
         </Row>
