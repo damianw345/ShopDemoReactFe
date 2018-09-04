@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import SubPanelRow from './SubPanelRow'
 import './SubPanel.css'
-
+import {
+    Button
+} from 'reactstrap';
 class SummarySubpanel extends Component {
     constructor(props) {
         super(props)
@@ -10,7 +12,6 @@ class SummarySubpanel extends Component {
             flavours: props.flavours,
             dressings: props.dressings,
             sauces: props.sauces,
-            removeButtons: props.removeButtons
         }
     }
 
@@ -21,11 +22,7 @@ class SummarySubpanel extends Component {
             flavoursToRender = this.state.flavours.map((flavour) =>
                 <SubPanelRow
                     labelText={flavour}
-                    buttonLabelText={'Usuń'}
-                    handleClick={this.handleIngredientRemove}
-                    type={'Smaki'}
                     key={'Smaki ' + flavour}
-                    removeButtons = {this.state.removeButtons}
                 />)
         }
 
@@ -34,11 +31,7 @@ class SummarySubpanel extends Component {
             dressingsToRender = this.state.dressings.map((dressing) =>
                 <SubPanelRow
                     labelText={dressing}
-                    buttonLabelText={'Usuń'}
-                    handleClick={this.handleIngredientRemove}
-                    type={'Dodatki'}
                     key={'Dodatki ' + dressing}
-                    removeButtons = {this.state.removeButtons}
                 />)
         }
 
@@ -47,11 +40,7 @@ class SummarySubpanel extends Component {
             saucesToRender = this.state.sauces.map((sauce) =>
                 <SubPanelRow
                     labelText={sauce}
-                    buttonLabelText={'Usuń'}
-                    handleClick={this.handleIngredientRemove}
-                    type={'Polewy'}
                     key={'Polewy ' + sauce}
-                    removeButtons = {this.state.removeButtons}
                 />)
         }
 
@@ -68,8 +57,13 @@ class SummarySubpanel extends Component {
                 <p className='summarySubpanelIngredientP'>Polewy:</p>
                 {saucesToRender}
 
+                <Button onClick={this.orderDoneHandler} color="success" size="lg" block>Skończone</Button>
             </div>
         );
+    }
+
+    orderDoneHandler = () => {
+        console.log('click!');
     }
 
     componentDidMount() {
