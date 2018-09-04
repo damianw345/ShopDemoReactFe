@@ -7,7 +7,6 @@ import {
 import './App.css';
 import Panel from './Panel';
 import OrderPanel from './OrderPanel';
-import IceCreamsPanel from './IceCreamsPanel';
 import axios from 'axios';
 
 // let baseUrl = 'http://18.185.138.85:8080/';
@@ -18,9 +17,7 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      orders: [],
-      ordersPanels: [],
-      iceCreamsPanels: [],
+      orders: []
     }
   }
 
@@ -30,9 +27,14 @@ class App extends Component {
         <Row className="text-center">
           <Col >
             <Panel topText={'W realizacji'}>
-              <OrderPanel topText={'Zamówienie'}>
-                {this.state.iceCreamsPanels.map((orderPanel) => orderPanel)}
-              </OrderPanel>
+              {this.state.orders.map((order) => {
+                return (
+                  <OrderPanel
+                    topText='Zamówienie'
+                    iceCreams = {order.iceCreams}
+                  />
+                );
+              })}
             </Panel>
           </Col>
         </Row>
@@ -47,23 +49,9 @@ class App extends Component {
       .then(response => {
 
         let fetchedOrders = response.data;
-
-        let newIceCreamsPanels = fetchedOrders.map(order => {
-          return order.iceCreams.map(iceCream => {
-            return(<IceCreamsPanel
-              key={Math.random() * 10000}
-              // iceCreamId={this.state.iceCreamsInOrder.length + 1}
-              flavours={iceCream.flavours}
-              dressings={[iceCream.dressing]}
-              sauces={[iceCream.sauce]}
-            />);
-          })
-        });
-
         this.setState({
-          orders: fetchedOrders,
-          iceCreamsPanels: newIceCreamsPanels
-        })
+          orders: fetchedOrders
+        });
       })
       .catch(() => this.setState({ orders: [] }));
   }

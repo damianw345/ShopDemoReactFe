@@ -6,7 +6,6 @@ class Panel extends Component {
         super(props)
         this.state = {
             topText: props.topText
-            
         }
     }
 
