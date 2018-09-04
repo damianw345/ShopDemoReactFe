@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import SubPanelRow from './SubPanelRow'
-import './SubPanel.css'
+import './OrderPanel.css'
 import {
     Button
 } from 'reactstrap';
-class SummarySubpanel extends Component {
+class IceCreamsPanel extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -79,4 +79,4 @@ class SummarySubpanel extends Component {
     // }
 }
 
-export default SummarySubpanel;
+export default IceCreamsPanel;

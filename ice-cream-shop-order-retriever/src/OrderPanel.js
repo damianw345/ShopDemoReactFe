@@ -1,5 +1,5 @@
 import React from 'react';
-import './SubPanel.css';
+import './OrderPanel.css';
 
 // const SubPanel = ({topText}) => {
 const SubPanel = (props) => {

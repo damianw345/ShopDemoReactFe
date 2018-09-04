@@ -1,5 +1,5 @@
 import React from 'react';
-import './SubPanel.css';
+import './OrderPanel.css';
 import {
     Row,
     Col

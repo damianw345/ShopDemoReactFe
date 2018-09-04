@@ -6,8 +6,8 @@ import {
 } from 'reactstrap';
 import './App.css';
 import Panel from './Panel';
-import SubPanel from './SubPanel';
-import SummarySubpanel from './SummarySubpanel';
+import OrderPanel from './OrderPanel';
+import IceCreamsPanel from './IceCreamsPanel';
 import axios from 'axios';
 
 // let baseUrl = 'http://18.185.138.85:8080/';
@@ -19,7 +19,8 @@ class App extends Component {
     super()
     this.state = {
       orders: [],
-      orderPanels: [],
+      ordersPanels: [],
+      iceCreamsPanels: [],
     }
   }
 
@@ -29,9 +30,9 @@ class App extends Component {
         <Row className="text-center">
           <Col >
             <Panel topText={'W realizacji'}>
-              <SubPanel topText={'Zamówienie'}>
-                {this.state.orderPanels.map((orderPanel) => orderPanel)}
-              </SubPanel>
+              <OrderPanel topText={'Zamówienie'}>
+                {this.state.iceCreamsPanels.map((orderPanel) => orderPanel)}
+              </OrderPanel>
             </Panel>
           </Col>
         </Row>
@@ -47,9 +48,9 @@ class App extends Component {
 
         let fetchedOrders = response.data;
 
-        let summaryPanels = fetchedOrders.map(order => {
+        let newIceCreamsPanels = fetchedOrders.map(order => {
           return order.iceCreams.map(iceCream => {
-            return(<SummarySubpanel
+            return(<IceCreamsPanel
               key={Math.random() * 10000}
               // iceCreamId={this.state.iceCreamsInOrder.length + 1}
               flavours={iceCream.flavours}
@@ -61,7 +62,7 @@ class App extends Component {
 
         this.setState({
           orders: fetchedOrders,
-          orderPanels: summaryPanels
+          iceCreamsPanels: newIceCreamsPanels
         })
       })
       .catch(() => this.setState({ orders: [] }));
