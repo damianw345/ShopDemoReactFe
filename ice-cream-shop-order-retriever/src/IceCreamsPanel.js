@@ -8,7 +8,6 @@ class IceCreamsPanel extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            iceCreamId: props.iceCreamId,
             flavours: props.flavours,
             dressings: props.dressings,
             sauces: props.sauces,
@@ -19,10 +18,10 @@ class IceCreamsPanel extends Component {
 
         let flavoursToRender;
         if (typeof this.state.flavours !== 'undefined' && this.state.flavours.length > 0) {
-            flavoursToRender = this.state.flavours.map((flavour) =>
+            flavoursToRender = this.state.flavours.map((flavour, index) =>
                 <SubPanelRow
                     labelText={flavour}
-                    key={'Smaki ' + flavour}
+                    key={'Smaki ' + flavour + index}
                 />)
         }
 

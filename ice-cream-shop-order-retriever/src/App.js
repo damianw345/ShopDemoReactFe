@@ -30,6 +30,7 @@ class App extends Component {
               {this.state.orders.map((order) => {
                 return (
                   <OrderPanel
+                    key= {order.orderId}
                     topText='Zamówienie'
                     iceCreams = {order.iceCreams}
                   />
@@ -41,7 +42,6 @@ class App extends Component {
       </Container>
     );
   }
-
 
   fetchOrders = () => {
     // http://localhost:8080/orders?filter=not_finished

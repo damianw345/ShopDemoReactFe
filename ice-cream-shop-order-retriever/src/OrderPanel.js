@@ -16,13 +16,14 @@ class OrderPanel extends React.Component {
             <div className='subpanel'>
                 <h3 id='sub-panel-title'>{this.state.topText}</h3>
                 <div>
-                    {this.state.iceCreams.map((iceCream) => {
+                    {this.state.iceCreams.map((iceCream, index) => {
                         return (
                             <IceCreamsPanel
-                                // iceCreamId = {iceCream.}
+                                iceCreamId = {index + 1}
                                 flavours={iceCream.flavours}
                                 sauces={[iceCream.sauce]}
                                 dressings={[iceCream.dressing]}
+                                key={index}
                             />
                         );
                     })}
