@@ -57,7 +57,7 @@ class SummarySubpanel extends Component {
                 <p className='summarySubpanelIngredientP'>Polewy:</p>
                 {saucesToRender}
 
-                <Button onClick={this.orderDoneHandler} color="success" size="lg" block>Skończone</Button>
+                <Button onClick={this.orderDoneHandler} color="success" size="lg" block>Zakończ</Button>
             </div>
         );
     }
@@ -66,17 +66,17 @@ class SummarySubpanel extends Component {
         console.log('click!');
     }
 
-    componentDidMount() {
-        this.scrollToBottom();
-    }
+    // componentDidMount() {
+    //     this.scrollToBottom();
+    // }
 
-    componentDidUpdate() {
-        this.scrollToBottom();
-    }
+    // componentDidUpdate() {
+    //     this.scrollToBottom();
+    // }
 
-    scrollToBottom() {
-        this.el.scrollIntoView({ behavior: 'smooth' });
-    }
+    // scrollToBottom() {
+    //     this.el.scrollIntoView({ behavior: 'smooth' });
+    // }
 }
 
 export default SummarySubpanel;

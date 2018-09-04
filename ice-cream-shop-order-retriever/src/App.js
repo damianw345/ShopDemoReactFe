@@ -19,6 +19,7 @@ class App extends Component {
     super()
     this.state = {
       orders: [],
+      orderPanels: [],
     }
   }
 
@@ -29,7 +30,7 @@ class App extends Component {
           <Col >
             <Panel topText={'W realizacji'}>
               <SubPanel topText={'Zamówienie'}>
-                <SummarySubpanel iceCreamId={1} flavours={['smak1', 'smak2']} sauces={['sos1']} dressings={['dodatek1']} />
+                {this.state.orderPanels.map((orderPanel) => orderPanel)}
               </SubPanel>
             </Panel>
           </Col>
@@ -38,13 +39,41 @@ class App extends Component {
     );
   }
 
-  componentDidMount() {
 
+  fetchOrders = () => {
     // http://localhost:8080/orders?filter=not_finished
-
     axios.get(baseUrl + 'orders?filter=not_finished')
-      .then(fetchedOrders => { console.log(fetchedOrders.data); this.setState({ orders: fetchedOrders.data })})
+      .then(response => {
+
+        let fetchedOrders = response.data;
+
+        let summaryPanels = fetchedOrders.map(order => {
+          return order.iceCreams.map(iceCream => {
+            return(<SummarySubpanel
+              key={Math.random() * 10000}
+              // iceCreamId={this.state.iceCreamsInOrder.length + 1}
+              flavours={iceCream.flavours}
+              dressings={[iceCream.dressing]}
+              sauces={[iceCream.sauce]}
+            />);
+          })
+        });
+
+        this.setState({
+          orders: fetchedOrders,
+          orderPanels: summaryPanels
+        })
+      })
       .catch(() => this.setState({ orders: [] }));
+  }
+
+  componentDidMount() {
+    this.fetchOrders();
+    this.timer = setInterval(() => this.fetchOrders(), 5000);
+  }
+
+  componentWillUnmount() {
+    this.timer = null;
   }
 }
 
