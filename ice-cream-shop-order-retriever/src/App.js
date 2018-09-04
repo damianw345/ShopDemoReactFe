@@ -9,8 +9,8 @@ import Panel from './Panel';
 import OrderPanel from './OrderPanel';
 import axios from 'axios';
 
-// let baseUrl = 'http://18.185.138.85:8080/';
-let baseUrl = 'http://localhost:8080/';
+let baseUrl = 'http://18.185.138.85:8080/';
+// let baseUrl = 'http://localhost:8080/';
 
 class App extends Component {
 

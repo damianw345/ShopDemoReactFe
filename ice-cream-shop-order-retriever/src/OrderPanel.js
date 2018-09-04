@@ -14,10 +14,17 @@ class OrderPanel extends Component {
             orderId: props.orderId,
             iceCreams: props.iceCreams,
             baseUrl: props.baseUrl,
+            renderButton: true,
         }
     }
 
     render() {
+
+        let buttonContainer;
+        buttonContainer = this.state.renderButton ?
+             <Button onClick={this.orderDoneHandler} color="success" size="lg" block>Zakończ</Button>:
+             <div></div>
+
         return (
             <div className='subpanel'>
                 <h3 id='sub-panel-title'>{this.state.topText}</h3>
@@ -33,7 +40,8 @@ class OrderPanel extends Component {
                             />
                         );
                     })}
-                <Button onClick={this.orderDoneHandler} color="success" size="lg" block>Zakończ</Button>
+                    {/* will hide button after finishing order */}
+                {buttonContainer}
                 </div>
             </div>
         );
@@ -41,9 +49,10 @@ class OrderPanel extends Component {
 
     orderDoneHandler = () => {
 
+        this.setState({renderButton: false})
+
         let config = { headers: {'Content-Type': 'application/json'} };
         let content = {isFinished: true};
-        
         axios.put(this.state.baseUrl + 'orders/' + this.state.orderId, content, config);
     }
 }
